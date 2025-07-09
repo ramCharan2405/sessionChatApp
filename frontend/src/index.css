@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* EtherChat Design System - Decentralized Chat App
+All colors MUST be HSL for proper theming
+*/
+
+@layer base {
+  :root {
+    /* Core App Colors - Light Mode */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Web3/Crypto Theme Colors */
+    --primary: 266 83% 58%;      /* Purple for Web3 */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 215 25% 27%;     /* Dark blue-gray */
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 271 91% 65%;        /* Bright purple accent */
+    --accent-foreground: 0 0% 98%;
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    /* Chat-specific colors */
+    --chat-bubble-sent: 266 83% 58%;      /* Purple for sent messages */
+    --chat-bubble-received: 215 25% 27%;  /* Dark gray for received */
+    --online-status: 142 76% 36%;         /* Green for online */
+    --encrypted-status: 47 96% 53%;       /* Gold for encrypted */
+
+    /* Utility colors */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 266 83% 58%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar colors */
+    --sidebar-background: 224 71.4% 4.1%;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-primary: 266 83% 58%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 215 27.9% 16.9%;
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 215 27.9% 16.9%;
+    --sidebar-ring: 266 83% 58%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(266 83% 58%), hsl(251 91% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(215 25% 27%), hsl(224 71.4% 4.1%));
+    --gradient-crypto: linear-gradient(135deg, hsl(266 83% 58%), hsl(271 91% 65%), hsl(280 100% 70%));
+    
+    /* Glassmorphism */
+    --glass-bg: hsla(240, 10%, 3.9%, 0.8);
+    --glass-border: hsla(266, 83%, 58%, 0.2);
+    --glass-blur: blur(10px);
+
+    /* Shadows */
+    --shadow-glow: 0 0 20px hsla(266, 83%, 58%, 0.3);
+    --shadow-card: 0 4px 12px hsla(0, 0%, 0%, 0.4);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent));
+  }
+}
+
+@layer utilities {
+  /* Glass morphism utility classes */
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Animation utilities */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 5px hsl(var(--primary)); }
+    to { box-shadow: 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary)); }
+  }
+}
