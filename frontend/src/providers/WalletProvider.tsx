@@ -2,6 +2,7 @@ import { WagmiConfig, http } from 'wagmi';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { defineChain } from 'viem';
 import '@rainbow-me/rainbowkit/styles.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Define Amoy chain using viem's defineChain
 const amoy = defineChain({
@@ -32,12 +33,16 @@ const config = getDefaultConfig({
   projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID
 });
 
+const queryClient = new QueryClient();
+
 export function WalletProvider({ children }: { children: React.ReactNode }) {
   return (
     <WagmiConfig config={config}>
-      <RainbowKitProvider>
-        {children}
-      </RainbowKitProvider>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider>
+          {children}
+        </RainbowKitProvider>
+      </QueryClientProvider>
     </WagmiConfig>
   );
 } 
